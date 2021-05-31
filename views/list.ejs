@@ -7,17 +7,20 @@
     <div class="box">
 
         <% for(var i=0;i<items.length;i++) {%>
-            <div class="item">
-                <input type="checkbox" />
-                <p>
-                    <%=items[i] %>
-                </p>
-            </div>
+            <form method="POST" action="/delete">
+                <div class="item">
+                    <input type="checkbox" name="chkItem" value=<%=items[i].id%>  onchange="this.form.submit()"  />
+                    <p>
+                        <%=items[i].name %>
+                    </p>
+                    <input type="hidden" name="listName" value=<%=listTitle  %> />
+                </div>
+            </form>
             <%} %>
 
 
 
-                <form action="/" method="POST" class="item">
+                <form action=<%=listTitle %>  method="POST" class="item">
                     <input type="text" name="item" placeholder="New Item" autocomplete="off">
                     <button type="submit" name="btnAdd" value=<%=listTitle %> >+</button>
                 </form>
